@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'rhysd/vim-clang-format'
   Plug 'frazrepo/vim-rainbow'
   Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'habamax/vim-gruvbit'
+  Plug 'sainnhe/gruvbox-material'
   Plug 'itchyny/lightline.vim'
   Plug 'vim-syntastic/syntastic'
   Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -35,27 +35,16 @@ call plug#end()
   set cmdheight=2
   "============coloring config============""
   syntax on
-  "italic comments + bold
-    func! s:gruvbit_setup() abort
-      hi Comment gui=italic cterm=italic
-      hi Statement gui=bold cterm=bold
-  endfunc
 
-  augroup colorscheme_change | au!
-      au ColorScheme gruvbit call s:gruvbit_setup()
-  augroup END
-
-  "lightline config
-  let g:lightline = {"colorscheme": "gruvbit"}
+  let g:lightline = {"colorscheme": "jellybeans"}
 
   set termguicolors
-  colorscheme gruvbit
+  colorscheme gruvbox-material
   let g:nvcode_termcolors=256
   let g:nvcode_hide_endofbuffer=1
   let g:cpp_class_scope_highlight = 1
   let g:cpp_member_variable_highlight = 1
   let g:cpp_class_decl_highlight = 1 
-  let g:gruvbit_transp_bg = v:true
   hi Normal guibg=NONE ctermbg=NONE
   hi StatusLine ctermbg=none cterm=bold
 
