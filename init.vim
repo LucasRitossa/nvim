@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
   Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'sbdchd/neoformat'
   Plug 'jackguo380/vim-lsp-cxx-highlight'
   Plug 'evanleck/vim-svelte'
   Plug '9mm/vim-closer'
@@ -8,11 +9,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tjdevries/nlua.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
-  Plug 'nvim-lua/diagnostic-nvim'
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'sainnhe/edge'
   Plug 'kjwon15/vim-transparent'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
   let mapleader = " "
@@ -23,28 +24,7 @@ call plug#end()
   set cot=menuone,noinsert,noselect shm+=c
   set bg=dark
   let g:edge_style = 'neon'
-  colo edge
-  
-  let g:terminal_color_0 = "#363a4e"
-  let g:terminal_color_8 = "#363a4e"
-  let g:terminal_color_1 = "#ec7279"
-  let g:terminal_color_9 = "#ec7279"
-  let g:terminal_color_2 = "#a0c980"
-  let g:terminal_color_10 = "#a0c980"
-  let g:terminal_color_3 = "#deb974"
-  let g:terminal_color_11 = "#deb974"
-  let g:terminal_color_4 = "#6cb6eb"
-  let g:terminal_color_12 = "#6cb6eb"
-  let g:terminal_color_5 = "#d38aea"
-  let g:terminal_color_13 = "#d38aea"
-  let g:terminal_color_6 = "#5dbbc1"
-  let g:terminal_color_14 = "#5dbbc1"
-  let g:terminal_color_7 = "#c5cdd9"
-  let g:terminal_color_15 = "#c5cdd9"
-  let g:terminal_color_background = "#2b2d3a"
-  let g:terminal_color_foreground = "#c5cdd9"
-
-
+  colo gruvbox-material
     
   let g:signify_sign_add = '|'
   let g:signify_sign_delete = '|'
@@ -59,7 +39,6 @@ call plug#end()
 :lua << EOF
   local nvim_lsp = require('lspconfig')
   local on_attach = function(_, bufnr)
-    require('diagnostic').on_attach()
     require('completion').on_attach()
     require'lspconfig'.tsserver.setup{}
     local opts = { noremap=true, silent=true }
@@ -73,7 +52,7 @@ call plug#end()
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>xd', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
   end
-  local servers = {'jsonls', 'clangd', 'cssls', 'html'}
+  local servers = {'tsserver','jsonls', 'clangd', 'cssls', 'html'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -100,7 +79,7 @@ EOF
   nnoremap <S-h> :call ToggleHiddenAll()<CR>
   nnoremap <leader>s <Esc>:w<cr>
   nnoremap <leader>y "*y 
-  nnoremap <Leader>c :<C-u>ClangFormat<CR>
+  nnoremap <leader>c :Neoformat<CR>
   nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
   nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
   nnoremap <leader>t :!groff -ms groff.ms -T pdf > groff.pdf<CR>
