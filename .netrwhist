@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/luke/.config/nvim/.git'
+let g:netrw_dirhist_8='/home/luke'
+let g:netrw_dirhist_7='/home/luke/.config'
+let g:netrw_dirhist_6='/home/luke'
+let g:netrw_dirhist_5='/home/luke/programming'
+let g:netrw_dirhist_4='/home/luke/programming/js'
+let g:netrw_dirhist_3='/home/luke/programming/js/react_practice'
+let g:netrw_dirhist_2='/home/luke/programming/js/react_practice/weather_app'
+let g:netrw_dirhist_1='/home/luke/programming/js/react_practice/weather_app/src'
+let g:netrw_dirhist_0='/home/luke/programming/js/react_practice/weather_app'
