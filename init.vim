@@ -1,4 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'mhartington/oceanic-next'
+  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
   Plug 'srcery-colors/srcery-vim'
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
   Plug 'nvim-treesitter/nvim-treesitter'
@@ -17,7 +21,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'sainnhe/gruvbox-material'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nanotech/jellybeans.vim'
-  Plug 'sainnhe/forest-night'
   Plug 'itchyny/lightline.vim'
 call plug#end()
 
@@ -30,16 +33,19 @@ call plug#end()
   set bg=dark
   set nohlsearch
 
-  colo gruvbox-material
-  let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ }
-  let g:srcery_transparent_background = 1
+  colo OceanicNext
+  let g:lightline = { 'colorscheme': 'palenight' }
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let g:palenight_terminal_italics=1
+  hi StatusLine ctermbg=none cterm=bold
 
   let g:diagnostic_virtual_text_prefix = '<'
   let g:diagnostic_enable_virtual_text = 1
   let g:completion_confirm_key = "\<C-y>"
   let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+  let g:fzf_layout = { 'window' : {'width': 0.8, 'height': 0.8} }
+  let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
+  let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
 
   :lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -50,17 +56,18 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+
 "============keybindings============"
   nnoremap <Leader>q" ciw""<Esc>P
   nnoremap <Leader>q' ciw''<Esc>P
   nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
-  nnoremap <S-h> :call ToggleHiddenAll()<CR>
   nnoremap <leader>s <Esc>:w<cr>
   nnoremap <leader>y "*y 
   nnoremap <leader>c :Neoformat<CR>
   nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
   nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
   nnoremap <leader>t :!groff -ms groff.ms -T pdf > groff.pdf<CR>
+  nnoremap <leader>p :Files<CR>
 
 "cpp stuff
 " for detecting OS
@@ -113,6 +120,7 @@ EOF
 endfunction
 
 command! -nargs=0 CompileAndRun call TermWrapper(printf('g++ -std=c++11 %s && ./a.out', expand('%')))
+command! -nargs=0 CompileAndRun2 call TermWrapper(printf('gcc %s && ./a.out', expand('%')))
 command! -nargs=1 CompileAndRunWithFile call TermWrapper(printf('g++ -std=c++11 %s && ./a.out < %s', expand('%'), <args>))
 autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 
@@ -124,6 +132,7 @@ augroup CppToolkit
 	autocmd FileType cpp nnoremap <leader>fb :!g++ -std=c++11 % && ./a.out<CR>
 	autocmd FileType cpp nnoremap <leader>fr :!./a.out<CR>
 	autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
+	autocmd FileType c nnoremap <leader>fw :CompileAndRun2<CR>
 augroup END
 
 source ~/.config/nvim/coc_config.vim
