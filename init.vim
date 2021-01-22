@@ -22,6 +22,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nanotech/jellybeans.vim'
   Plug 'itchyny/lightline.vim'
+  Plug 'wadackel/vim-dogrun'
+  Plug 'kaicataldo/material.vim'
 call plug#end()
 
   let mapleader = " "
@@ -33,8 +35,11 @@ call plug#end()
   set bg=dark
   set nohlsearch
 
-  colo OceanicNext
-  let g:lightline = { 'colorscheme': 'palenight' }
+  colo material
+  let g:material_theme_style = 'palenight'
+  let g:lightline = {
+  \ 'colorscheme': 'palenight',
+  \ }
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let g:palenight_terminal_italics=1
   hi StatusLine ctermbg=none cterm=bold
