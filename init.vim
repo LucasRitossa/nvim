@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'junegunn/goyo.vim'
   Plug 'mhartington/oceanic-next'
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -28,22 +29,25 @@ call plug#end()
 
   let mapleader = " "
 
+  filetype plugin on
+set omnifunc=syntaxcomplete#Complete
   set ts=2 sts=2 sw=2 et lcs=precedes:,extends:
   set hid nowrap spr sb ic scs tgc nosmd swb=useopen scl=yes nosc noru icm=split
   set udir=~/.config/nvim/undodir udf
   set cot=menuone,noinsert,noselect shm+=c
   set bg=dark
   set nohlsearch
+  set clipboard+=unnamedplus
 
-  colo material
-  let g:material_theme_style = 'palenight'
+  colo gruvbox-material
   let g:lightline = {
-  \ 'colorscheme': 'palenight',
+  \ 'colorscheme': 'jellybeans',
   \ }
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let g:palenight_terminal_italics=1
   hi StatusLine ctermbg=none cterm=bold
 
+  let g:netrw_banner=0
   let g:diagnostic_virtual_text_prefix = '<'
   let g:diagnostic_enable_virtual_text = 1
   let g:completion_confirm_key = "\<C-y>"
@@ -62,6 +66,8 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 
+
+
 "============keybindings============"
   nnoremap <Leader>q" ciw""<Esc>P
   nnoremap <Leader>q' ciw''<Esc>P
@@ -73,6 +79,11 @@ EOF
   nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
   nnoremap <leader>t :!groff -ms groff.ms -T pdf > groff.pdf<CR>
   nnoremap <leader>p :Files<CR>
+  nnoremap <leader>P :Files ~/programming/<CR>
+  nnoremap <leader>v :CocCommand explorer<CR>
+  nnoremap <leader>h :vertical resize -10<CR>
+  nnoremap <leader>l :vertical resize +10<CR>
+
 
 "cpp stuff
 " for detecting OS
@@ -125,7 +136,7 @@ EOF
 endfunction
 
 command! -nargs=0 CompileAndRun call TermWrapper(printf('g++ -std=c++11 %s && ./a.out', expand('%')))
-command! -nargs=0 CompileAndRun2 call TermWrapper(printf('gcc %s && ./a.out', expand('%')))
+command! -nargs=0 CompileAndRun2 call TermWrapper(printf('go run %s', expand('%')))
 command! -nargs=1 CompileAndRunWithFile call TermWrapper(printf('g++ -std=c++11 %s && ./a.out < %s', expand('%'), <args>))
 autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 
@@ -137,7 +148,7 @@ augroup CppToolkit
 	autocmd FileType cpp nnoremap <leader>fb :!g++ -std=c++11 % && ./a.out<CR>
 	autocmd FileType cpp nnoremap <leader>fr :!./a.out<CR>
 	autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
-	autocmd FileType c nnoremap <leader>fw :CompileAndRun2<CR>
+	autocmd FileType go nnoremap <leader>fw :CompileAndRun2<CR>
 augroup END
 
 source ~/.config/nvim/coc_config.vim
