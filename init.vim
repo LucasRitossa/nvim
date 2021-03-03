@@ -1,10 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'junegunn/goyo.vim'
   Plug 'mhartington/oceanic-next'
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'srcery-colors/srcery-vim'
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'sbdchd/neoformat'
@@ -22,7 +23,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'sainnhe/gruvbox-material'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nanotech/jellybeans.vim'
-  Plug 'itchyny/lightline.vim'
   Plug 'wadackel/vim-dogrun'
   Plug 'kaicataldo/material.vim'
 call plug#end()
@@ -39,10 +39,7 @@ set omnifunc=syntaxcomplete#Complete
   set nohlsearch
   set clipboard+=unnamedplus
 
-  colo gruvbox-material
-  let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
-  \ }
+  colo gruvbox-material 
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let g:palenight_terminal_italics=1
   hi StatusLine ctermbg=none cterm=bold
@@ -83,6 +80,8 @@ EOF
   nnoremap <leader>v :CocCommand explorer<CR>
   nnoremap <leader>h :vertical resize -10<CR>
   nnoremap <leader>l :vertical resize +10<CR>
+  nnoremap <leader>j :res -10<CR>
+  nnoremap <leader>k :res +10<CR>
 
 
 "cpp stuff
@@ -137,6 +136,7 @@ endfunction
 
 command! -nargs=0 CompileAndRun call TermWrapper(printf('g++ -std=c++11 %s && ./a.out', expand('%')))
 command! -nargs=0 CompileAndRun2 call TermWrapper(printf('go run %s', expand('%')))
+command! -nargs=0 CompileAndRun3 call TermWrapper(printf('python %s', expand('%')))
 command! -nargs=1 CompileAndRunWithFile call TermWrapper(printf('g++ -std=c++11 %s && ./a.out < %s', expand('%'), <args>))
 autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 
@@ -149,6 +149,7 @@ augroup CppToolkit
 	autocmd FileType cpp nnoremap <leader>fr :!./a.out<CR>
 	autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 	autocmd FileType go nnoremap <leader>fw :CompileAndRun2<CR>
+	autocmd FileType python nnoremap <leader>fw :CompileAndRun3<CR>
 augroup END
 
 source ~/.config/nvim/coc_config.vim
