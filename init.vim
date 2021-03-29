@@ -1,5 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'tpope/vim-rhubarb'
   Plug 'vim-airline/vim-airline'
+  Plug 'p00f/nvim-ts-rainbow' 
+  Plug 'kristijanhusak/vim-hybrid-material'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
+  Plug 'savq/melange'
+  Plug 'morhetz/gruvbox'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'junegunn/goyo.vim'
   Plug 'mhartington/oceanic-next'
@@ -7,16 +13,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'sbdchd/neoformat'
   Plug 'jackguo380/vim-lsp-cxx-highlight'
-  Plug 'evanleck/vim-svelte'
   Plug '9mm/vim-closer'
   Plug 'tpope/vim-commentary'
   Plug 'honza/vim-snippets'
   Plug 'tjdevries/nlua.nvim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'sainnhe/edge'
   Plug 'kjwon15/vim-transparent'
   Plug 'jiangmiao/auto-pairs'
@@ -25,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nanotech/jellybeans.vim'
   Plug 'wadackel/vim-dogrun'
   Plug 'kaicataldo/material.vim'
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
   let mapleader = " "
@@ -38,13 +42,13 @@ set omnifunc=syntaxcomplete#Complete
   set bg=dark
   set nohlsearch
   set clipboard+=unnamedplus
-
-  colo gruvbox-material 
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let g:palenight_terminal_italics=1
-  hi StatusLine ctermbg=none cterm=bold
+  let g:airline_theme = "gruvbox_material"
+
 
   let g:netrw_banner=0
+  let g:enable_italic_font = 1
   let g:diagnostic_virtual_text_prefix = '<'
   let g:diagnostic_enable_virtual_text = 1
   let g:completion_confirm_key = "\<C-y>"
@@ -52,18 +56,21 @@ set omnifunc=syntaxcomplete#Complete
   let g:fzf_layout = { 'window' : {'width': 0.8, 'height': 0.8} }
   let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
   let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
+  let g:gruvbox_material_background = 'soft'
+  let g:gruvbox_material_palette = 'material'
 
-  :lua << EOF
+  colo gruvbox-material
+  :lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
-    enable = true,
+    enable = true
+  },
+  rainbow = {
+    enable = false
   },
 }
 EOF
-
-
-
 
 "============keybindings============"
   nnoremap <Leader>q" ciw""<Esc>P
@@ -82,6 +89,10 @@ EOF
   nnoremap <leader>l :vertical resize +10<CR>
   nnoremap <leader>j :res -10<CR>
   nnoremap <leader>k :res +10<CR>
+  nnoremap <leader>n <C-^>
+  nnoremap <leader>gs :G<CR>
+  nnoremap <leader>gh :diffget<CR>
+  nnoremap <leader>gu :diffget<CR>
 
 
 "cpp stuff
