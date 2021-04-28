@@ -36,7 +36,7 @@ call plug#end()
   filetype plugin on
 set omnifunc=syntaxcomplete#Complete
   set ts=2 sts=2 sw=2 et lcs=precedes:,extends:
-  set hid nowrap spr sb ic scs tgc nosmd swb=useopen scl=yes nosc noru icm=split
+  set nu rnu hid nowrap spr sb ic scs tgc nosmd swb=useopen scl=yes nosc noru icm=split
   set udir=~/.config/nvim/undodir udf
   set cot=menuone,noinsert,noselect shm+=c
   set bg=dark
@@ -67,7 +67,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
   rainbow = {
-    enable = false
+    enable = true
   },
 }
 EOF
@@ -93,7 +93,36 @@ EOF
   nnoremap <leader>gs :G<CR>
   nnoremap <leader>gh :diffget<CR>
   nnoremap <leader>gu :diffget<CR>
+  nnoremap <leader>wm :call ToggleWrap()<CR>
 
+
+  let s:wrapenabled = 0
+function! ToggleWrap()
+  set wrap nolist spell
+  :Goyo
+  if s:wrapenabled
+    set nolinebreak
+    unmap j
+    unmap k
+    unmap 0
+    unmap ^
+    unmap $
+    let s:wrapenabled = 0
+  else
+    set linebreak
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap 0 g0
+    nnoremap ^ g^
+    nnoremap $ g$
+    vnoremap j gj
+    vnoremap k gk
+    vnoremap 0 g0
+    vnoremap ^ g^
+    vnoremap $ g$
+    let s:wrapenabled = 1
+  endif
+endfunction
 
 "cpp stuff
 " for detecting OS
