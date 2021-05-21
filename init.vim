@@ -34,7 +34,7 @@ call plug#end()
   let mapleader = " "
 
   filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+  set omnifunc=syntaxcomplete#Complete
   set ts=2 sts=2 sw=2 et lcs=precedes:,extends:
   set nu rnu hid nowrap spr sb ic scs tgc nosmd swb=useopen scl=yes nosc noru icm=split
   set udir=~/.config/nvim/undodir udf
@@ -42,11 +42,10 @@ set omnifunc=syntaxcomplete#Complete
   set bg=dark
   set nohlsearch
   set clipboard+=unnamedplus
+  "random settings for extensions
+  "
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  let g:palenight_terminal_italics=1
   let g:airline_theme = "gruvbox_material"
-
-
   let g:netrw_banner=0
   let g:enable_italic_font = 1
   let g:diagnostic_virtual_text_prefix = '<'
@@ -60,6 +59,7 @@ set omnifunc=syntaxcomplete#Complete
   let g:gruvbox_material_palette = 'material'
 
   colo gruvbox-material
+  "lua support (treesitter, rainbow)
   :lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -73,27 +73,38 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 "============keybindings============"
+  "qoutes around text
   nnoremap <Leader>q" ciw""<Esc>P
   nnoremap <Leader>q' ciw''<Esc>P
-  nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+  " writes changes
   nnoremap <leader>s <Esc>:w<cr>
-  nnoremap <leader>y "*y 
+  " formats code
   nnoremap <leader>c :Neoformat<CR>
   nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
   nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
+  " compiles and runs program
   nnoremap <leader>t :!groff -ms groff.ms -T pdf > groff.pdf<CR>
+  " fuzzy finder
   nnoremap <leader>p :Files<CR>
-  nnoremap <leader>P :Files ~/programming/<CR>
+  " opens coc expolorer (like vscode)
   nnoremap <leader>v :CocCommand explorer<CR>
+  " resizes window splits
   nnoremap <leader>h :vertical resize -10<CR>
   nnoremap <leader>l :vertical resize +10<CR>
   nnoremap <leader>j :res -10<CR>
   nnoremap <leader>k :res +10<CR>
+  " Toggles between 2 buffers
   nnoremap <leader>n <C-^>
+  " Shows git info
   nnoremap <leader>gs :G<CR>
-  nnoremap <leader>gh :diffget<CR>
-  nnoremap <leader>gu :diffget<CR>
+  " Toggles writing mode
   nnoremap <leader>wm :call ToggleWrap()<CR>
+  " places cursor one space from end of line and intents - for opening {}
+  nnoremap <C-n> $i<CR><CR><Esc>ki<TAB>
+  " adds semi-colon at end of line
+  nnoremap <C-l> :delmarks P<CR> mPA;<ESC>`Ph  
+  " Removes one char from end of line
+  nnoremap <S-l> :delmarks P<CR> mP$x`Ph
 
 
   let s:wrapenabled = 0
@@ -177,6 +188,8 @@ endfunction
 command! -nargs=0 CompileAndRun call TermWrapper(printf('g++ -std=c++11 %s && ./a.out', expand('%')))
 command! -nargs=0 CompileAndRun2 call TermWrapper(printf('go run %s', expand('%')))
 command! -nargs=0 CompileAndRun3 call TermWrapper(printf('python %s', expand('%')))
+command! -nargs=0 CompileAndRun4 call TermWrapper(printf('java %s', expand('%')))
+command! -nargs=0 CompileAndRun5 call TermWrapper(printf('nasm -f elf %s -o a.o && ld -m elf_i386 -s -o a.out a.o && ./a.out', expand('%')))
 command! -nargs=1 CompileAndRunWithFile call TermWrapper(printf('g++ -std=c++11 %s && ./a.out < %s', expand('%'), <args>))
 autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 
@@ -190,6 +203,8 @@ augroup CppToolkit
 	autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 	autocmd FileType go nnoremap <leader>fw :CompileAndRun2<CR>
 	autocmd FileType python nnoremap <leader>fw :CompileAndRun3<CR>
+	autocmd FileType java nnoremap <leader>fw :CompileAndRun4<CR>
+	autocmd FileType asm nnoremap <leader>fw :CompileAndRun5<CR>
 augroup END
 
 source ~/.config/nvim/coc_config.vim
