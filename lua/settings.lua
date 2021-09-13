@@ -1,4 +1,4 @@
------------------------------------------------------------
+﻿-----------------------------------------------------------
 -- Neovim settings
 --- General Neovim settings
 -----------------------------------------------------------
@@ -16,7 +16,7 @@ local opt = vim.opt         		-- global/buffer/windows-scoped options
 -----------------------------------------------------------
 -- General
 -----------------------------------------------------------
-g.mapleader = ','             -- change leader to a comma
+g.mapleader = ' '             -- change leader to a comma
 opt.mouse = 'a'               -- enable mouse support
 opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
 opt.swapfile = false          -- don't use swapfile
@@ -28,11 +28,9 @@ opt.syntax = 'enable'         -- enable syntax highlighting
 opt.number = true             -- show line number
 opt.showmatch = true          -- highlight matching parenthesis
 opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
-opt.colorcolumn = '80'        -- line lenght marker at 80 columns
-opt.splitright = true         -- vertical split to the right
 opt.splitbelow = true         -- orizontal split to the bottom
-opt.ignorecase = true         -- ignore case letters when search
 opt.smartcase = true          -- ignore lowercase for the whole pattern
+opt.wrap = false 	            -- remove line wrapping
 
 -- remove whitespace on save
 cmd[[au BufWritePre * :%s/\s\+$//e]]
@@ -49,7 +47,7 @@ exec([[
 -- Memory, CPU
 -----------------------------------------------------------
 opt.hidden = true         -- enable background buffers
-opt.history = 100         -- remember n lines in history
+opt.history = 10000       -- remember n lines in history
 opt.lazyredraw = true     -- faster scrolling
 opt.synmaxcol = 240       -- max column for syntax highlight
 
@@ -70,9 +68,6 @@ opt.smartindent = true    -- autoindent new lines
 -- don't auto commenting new lines
 cmd[[au BufEnter * set fo-=c fo-=r fo-=o]]
 
--- remove line lenght marker for selected filetypes
-cmd[[autocmd FileType text,markdown,xml,html,xhtml,javascript setlocal cc=0]]
-
 -- 2 spaces for selected filetypes
 cmd[[
   autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
@@ -89,5 +84,3 @@ cmd[[autocmd FileType markdown let g:indentLine_enabled=0]]
 -- Autocompletion
 -----------------------------------------------------------
 opt.completeopt = 'menuone,noselect,noinsert' -- completion options
-opt.shortmess = 'c' 	-- don't show completion messages
-

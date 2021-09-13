@@ -12,17 +12,20 @@ local paq = require('paq-nvim').paq   -- import module with `paq` function
 require 'paq' {
   'savq/paq-nvim';  -- let paq manage itself
 
-  'tomasiser/vim-code-dark';
+  'Mofiqul/vscode.nvim';
   'Yggdroot/indentLine';
   'hoob3rt/lualine.nvim';
-  'hrsh7th/nvim-cmp';
-  'hrsh7th/cmp-nvim-lsp';
   'neovim/nvim-lspconfig';
   'kyazdani42/nvim-tree.lua';
   'kyazdani42/nvim-web-devicons';
-  'liuchengxu/vista.vim';
   'nvim-treesitter/nvim-treesitter';
-  'tanvirtin/monokai.nvim';
   'kabouzeid/nvim-lspinstall';
+  'ms-jpq/coq_nvim';
+  'ms-jpq/coq.artifacts';
+  'kyazdani42/nvim-web-devicons';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
+  'windwp/nvim-autopairs';
+  'tomasiser/vim-code-dark';
 }
 
