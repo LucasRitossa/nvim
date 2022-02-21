@@ -1,7 +1,7 @@
-#Neovim Lua
+Neovim Lua
 This config aims to use lua plugins instead of vimscript
 
-##Install:
+Install:
 
 1. clone this repo into nvim config location:
 
