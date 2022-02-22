@@ -9,22 +9,22 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'hrsh7th/nvim-compe'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'NTBBloodbath/galaxyline.nvim'
 
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
 
     Plug 'srcery-colors/srcery-vim'
+    Plug 'glepnir/dashboard-nvim'
+
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
 
-    Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
 
     Plug 'tomtom/tcomment_vim'
 call plug#end()
-
-
 
 colorscheme  srcery
 
@@ -48,7 +48,18 @@ set virtualedit=all
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent
 set mouse=a  " mouse support
+set udir=~/.config/nvim/undodir udf
 
+" >> Plugin Settings
+let g:dashboard_default_executive = 'telescope'
+let g:dashboard_custom_header = [
+\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+\]
 
 " set leader key to ,
 let g:mapleader=" "
@@ -57,10 +68,10 @@ let g:mapleader=" "
 nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
 
 " most recently used files
-nnoremap <Leader>m <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
+nnoremap <Leader>r <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
 
 " find buffer
-nnoremap ; <cmd>lua require'telescope.builtin'.buffers{}<CR>
+nnoremap <Leader>b <cmd>lua require'telescope.builtin'.buffers{}<CR>
 
 " find in current buffer
 nnoremap <Leader>/ <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
@@ -72,22 +83,17 @@ nnoremap <Leader>' <cmd>lua require'telescope.builtin'.marks{}<CR>
 nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
 
 " all files
-nnoremap <Leader>bfs <cmd>lua require'telescope.builtin'.find_files{}<CR>
+nnoremap <Leader>F <cmd>lua require'telescope.builtin'.find_files{}<CR>
 
 " ripgrep like grep through dir
 nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
 
 " pick color scheme
-nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
+nnoremap <Leader>CS <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 
-
-" >> setup nerdcomment key bindings
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
-
-xnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
-nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
-
+" >> Normal Key bindings
+nnoremap <Leader>s <Esc>:w<cr>
+nnoremap <leader>n <C-^>    
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
@@ -99,7 +105,7 @@ nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <Leader>c <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
@@ -110,4 +116,5 @@ require("lsp")
 require("treesitter")
 require("completion")
 require("saga")
+require("statusline")
 EOF
