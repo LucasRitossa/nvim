@@ -5,6 +5,11 @@ require'nvim-treesitter.configs'.setup {
     highlight = { -- enable highlighting for all file types
       enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
     },
+    rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil
+    },
     incremental_selection = {
       enable = true,  -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
       disable = { "lua" },

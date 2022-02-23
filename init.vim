@@ -7,6 +7,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tami5/lspsaga.nvim'
     Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
     Plug 'hrsh7th/nvim-compe'
+    Plug 'p00f/nvim-ts-rainbow'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'NTBBloodbath/galaxyline.nvim'
