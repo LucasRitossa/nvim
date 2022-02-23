@@ -17,9 +17,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'srcery-colors/srcery-vim'
     Plug 'glepnir/dashboard-nvim'
 
-    Plug 'tpope/vim-ragtag'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-unimpaired'
+    Plug 'ThePrimeagen/harpoon'
 
     Plug 'tpope/vim-fugitive'
 
@@ -44,25 +42,25 @@ set ruler
 set smartindent
 set shiftwidth=4
 set hlsearch
+set cursorline
 set virtualedit=all
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent
 set mouse=a  " mouse support
 set udir=~/.config/nvim/undodir udf
-
-" >> Plugin Settings
-let g:dashboard_default_executive = 'telescope'
-let g:dashboard_custom_header = [
-\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-\]
+let g:netrw_banner=0
 
 " set leader key to ,
 let g:mapleader=" "
+
+" >> Harpoon bindings
+nnoremap <silent><C-h> :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent><C-g> :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent><C-t> :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><C-s> :lua require("harpoon.ui").nav_file(4)<CR>
+
+nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 " >> Telescope bindings
 nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
