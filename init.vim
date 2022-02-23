@@ -18,9 +18,9 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'glepnir/dashboard-nvim'
 
     Plug 'ThePrimeagen/harpoon'
-
     Plug 'tpope/vim-fugitive'
-
+    Plug 'windwp/nvim-autopairs'
+    Plug 'windwp/nvim-ts-autotag'
     Plug 'tomtom/tcomment_vim'
 call plug#end()
 
@@ -115,4 +115,5 @@ require("treesitter")
 require("completion")
 require("saga")
 require("statusline")
+require('pairs')
 EOF
