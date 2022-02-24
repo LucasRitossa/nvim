@@ -1,5 +1,6 @@
-#Neovim lua config
+# Neovim lua config
 
+## Installation
     1) clone repo
     2) Install vim-plug with 
         ```sh
