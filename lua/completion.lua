@@ -1,6 +1,41 @@
 local cmp = require'cmp'
 
+  local cmp_kinds = {
+  Text = '  ',
+  Method = '  ',
+  Function = '  ',
+  Constructor = '  ',
+  Field = '  ',
+  Variable = '  ',
+  Class = '  ',
+  Interface = '  ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = '  ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Constant = '  ',
+  Struct = '  ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
+}
+
  cmp.setup({
+       formatting = {
+    fields = { "kind", "abbr" },
+    format = function(_, vim_item)
+      vim_item.kind = cmp_kinds[vim_item.kind] or ""
+      return vim_item
+    end,
+  },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
@@ -49,6 +84,7 @@ local cmp = require'cmp'
       { name = 'cmdline' }
     })
   })
+
 
     -- Setup lspconfig.
   -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
