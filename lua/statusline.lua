@@ -64,7 +64,7 @@ line.left[2] = {
         t = nord_colors.red
         }
         cmd("hi GalaxyViMode guifg=" .. mode_color[fn.mode()])
-        return "    "
+        return "  ◉  "
     end
   }
 }

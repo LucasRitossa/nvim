@@ -6,17 +6,16 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'neovim/nvim-lspconfig'
     Plug 'tami5/lspsaga.nvim'
     Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
-    Plug 'hrsh7th/nvim-compe'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/nvim-cmp'
+
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'NTBBloodbath/galaxyline.nvim'
-
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
-
     Plug 'srcery-colors/srcery-vim'
-    Plug 'glepnir/dashboard-nvim'
 
     Plug 'ThePrimeagen/harpoon'
     Plug 'tpope/vim-fugitive'
