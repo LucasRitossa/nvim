@@ -9,7 +9,7 @@
 
     ```
 3. open init.vim and run :PlugInstall
-4. Install a jetbrains font
+4. Install a [Nerd Font](https://www.nerdfonts.com/)
 5. Install icon font [here](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)
 6. run :LspInstall on any file to use LSP
     
