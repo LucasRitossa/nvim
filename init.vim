@@ -1,22 +1,31 @@
 " >> load plugins
 call plug#begin(stdpath('data') . 'vimplug')
+    "lsp
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'neovim/nvim-lspconfig'
     Plug 'tami5/lspsaga.nvim'
     Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/nvim-cmp'
 
+    " completition
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'rafamadriz/friendly-snippets'
+
+    " visuals
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'NTBBloodbath/galaxyline.nvim'
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
+    " themes
     Plug 'srcery-colors/srcery-vim'
 
+    "functionality
     Plug 'ThePrimeagen/harpoon'
     Plug 'tpope/vim-fugitive'
     Plug 'windwp/nvim-autopairs'

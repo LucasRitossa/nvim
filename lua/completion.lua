@@ -1,4 +1,8 @@
 local cmp = require'cmp'
+local luasnip = require("luasnip")
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   local cmp_kinds = {
   Text = '  ',
@@ -37,16 +41,17 @@ local cmp = require'cmp'
     end,
   },
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users. require('snippy').expand_snippet(args.body) -- For `snippy` users. vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
+        snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+    }
+
     },
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+       ['<C-y>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
@@ -54,7 +59,9 @@ local cmp = require'cmp'
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources({
+        {name = "cmp_tabnine"},
       { name = 'nvim_lsp' },
+      {name = "luasnip"},
     }, {
       { name = 'buffer' },
     })
@@ -85,10 +92,32 @@ local cmp = require'cmp'
     })
   })
 
+  local tabnine = require("cmp_tabnine.config")
+tabnine:setup({
+	max_lines = 1000,
+	max_num_results = 20,
+	sort = true,
+	run_on_every_keystroke = true,
+	snippet_placeholder = "..",
+})
 
-    -- Setup lspconfig.
-  -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  -- require('lspconfig')['*'].setup {
-  --   capabilities = capabilities
-  -- }
+local snippets_paths = function()
+	local plugins = { "friendly-snippets" }
+	local paths = {}
+	local path
+	local root_path = vim.env.HOME .. "/.vim/plugged/"
+	for _, plug in ipairs(plugins) do
+		path = root_path .. plug
+		if vim.fn.isdirectory(path) ~= 0 then
+			table.insert(paths, path)
+		end
+	end
+	return paths
+end
+
+  require("luasnip.loaders.from_vscode").lazy_load({
+	paths = snippets_paths(),
+	include = nil, -- Load all languages
+	exclude = {},
+})
+
