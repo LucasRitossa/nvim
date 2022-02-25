@@ -24,6 +24,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     " themes
     Plug 'srcery-colors/srcery-vim'
+    Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 
     "functionality
     Plug 'ThePrimeagen/harpoon'
@@ -33,8 +34,12 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tomtom/tcomment_vim'
 call plug#end()
 
-colorscheme  srcery
+" config, and load theme
+let g:gruvbox_baby_telescope_theme = 1
+let g:gruvbox_baby_transparent_mode = 1
+colorscheme   gruvbox-baby
 
+" colors for nvim-cmp
 " gray
 highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
 " blue
