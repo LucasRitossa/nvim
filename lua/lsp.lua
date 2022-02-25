@@ -1,6 +1,11 @@
 -- lsp setup
 -- Set Default Prefix.
 -- Note: You can set a prefix per lsp server in the lv-globals.lua file
+
+require("project_nvim").setup{}
+require('telescope').load_extension('projects')
+require'nvim-tree'.setup {}
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = {
@@ -23,6 +28,7 @@ lsp_installer.on_server_ready(function(server)
     --     opts.root_dir = function() ... end
     -- end
 
+                                                        
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)

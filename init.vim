@@ -3,10 +3,13 @@ call plug#begin(stdpath('data') . 'vimplug')
     "lsp
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-telescope/telescope.nvim' 
     Plug 'neovim/nvim-lspconfig'
     Plug 'tami5/lspsaga.nvim'
     Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
+    Plug 'kyazdani42/nvim-tree.lua'
+
+    Plug 'nvim-telescope/telescope.nvim' 
+    Plug 'ahmedkhalf/project.nvim'
 
     " completition
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -93,6 +96,9 @@ nnoremap <silent><C-s> :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
 nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
+" nvim-tree bindings
+nnoremap <Leader>t :NvimTreeToggle<CR>
+
 " >> Telescope bindings
 nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
 
@@ -119,6 +125,8 @@ nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
 
 " pick color scheme
 nnoremap <Leader>CS <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
+
+nnoremap <Leader>pj <cmd>Telescope projects<CR>
 
 " >> Normal Key bindings
 nnoremap <Leader>s <Esc>:w<cr>
