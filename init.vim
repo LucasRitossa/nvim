@@ -82,6 +82,8 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 set autoindent
 set mouse=a  " mouse support
 set udir=~/.config/nvim/undodir udf
+set nohlsearch
+set wrap!
 let g:netrw_banner=0
 
 " set leader key to ,
@@ -126,6 +128,7 @@ nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
 " pick color scheme
 nnoremap <Leader>CS <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 
+" telescope projects
 nnoremap <Leader>pj <cmd>Telescope projects<CR>
 
 " >> Normal Key bindings
