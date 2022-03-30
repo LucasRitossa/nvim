@@ -52,28 +52,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-
-       ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
     },
     sources = cmp.config.sources({
         {name = "cmp_tabnine"},
