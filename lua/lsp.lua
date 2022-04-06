@@ -4,6 +4,12 @@
 
 require("project_nvim").setup{}
 require('telescope').load_extension('projects')
+require('telescope').setup {
+    defaults = {
+        '--ignore-file',
+        '.pnpm'
+    }
+}
 require'nvim-tree'.setup {}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
