@@ -36,13 +36,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'windwp/nvim-autopairs'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'tomtom/tcomment_vim'
-<<<<<<< HEAD
-    Plug 'alderz/smali-vim'
     Plug 'jbyuki/venn.nvim'
-    Plug 'tanvirtin/vgit.nvim'
-=======
-    Plug 'jbyuki/venn.nvim'
->>>>>>> d77fa88 (remove vscode tab complete, add venn)
 call plug#end()
 
 " config, and load theme
@@ -166,10 +160,6 @@ require("saga")
 require("statusline")
 
 require('pairs')
-<<<<<<< HEAD
-
-=======
->>>>>>> d77fa88 (remove vscode tab complete, add venn)
 function _G.Toggle_venn()
     local venn_enabled = vim.inspect(vim.b.venn_enabled)
     if venn_enabled == "nil" then
@@ -188,10 +178,4 @@ function _G.Toggle_venn()
         vim.b.venn_enabled = nil
     end
 end
--- toggle keymappings for venn using <leader>v
-vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR>", { noremap = true})
-<<<<<<< HEAD
-=======
-
->>>>>>> d77fa88 (remove vscode tab complete, add venn)
 EOF
