@@ -37,10 +37,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'windwp/nvim-ts-autotag'
     Plug 'tomtom/tcomment_vim'
     Plug 'jbyuki/venn.nvim'
-<<<<<<< HEAD
     Plug 'tpope/vim-fugitive'
-=======
->>>>>>> ad8308c5129b8e96d455d71250ad6dbb9eb0931a
 call plug#end()
 
 " config, and load theme
