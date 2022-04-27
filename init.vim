@@ -38,7 +38,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tomtom/tcomment_vim'
     Plug 'alderz/smali-vim'
     Plug 'jbyuki/venn.nvim'
-    Plug 'tanvirtin/vgit.nvim'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " config, and load theme
