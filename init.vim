@@ -27,6 +27,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     " themes
     Plug 'srcery-colors/srcery-vim'
+    Plug 'ellisonleao/gruvbox.nvim'
     Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
     Plug 'sainnhe/gruvbox-material'
 
@@ -41,8 +42,11 @@ call plug#begin(stdpath('data') . 'vimplug')
 call plug#end()
 
 " config, and load theme
-let g:gruvbox_baby_transparent_mode = 1
-colorscheme  gruvbox-baby
+let g:srcery_inverse = 0
+colorscheme srcery
+
+" make background transparent
+hi Normal guibg=NONE ctermbg=NONE
 
 " colors for nvim-cmp
 " gray
