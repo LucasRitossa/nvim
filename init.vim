@@ -5,9 +5,9 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/popup.nvim'
     Plug 'neovim/nvim-lspconfig'
     Plug 'tami5/lspsaga.nvim'
-    Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
-
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
 
@@ -39,6 +39,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tomtom/tcomment_vim'
     Plug 'jbyuki/venn.nvim'
     Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " config, and load theme
