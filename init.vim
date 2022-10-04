@@ -149,7 +149,7 @@ nnoremap <leader>n <C-^>
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
 " nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
-" nnoremap <Leader>c <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <Leader>c <cmd>lua vim.lsp.buf.format({async = true})<CR>
 " nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 " nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 " xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
