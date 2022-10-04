@@ -1,15 +1,15 @@
 " >> load plugins
 call plug#begin(stdpath('data') . 'vimplug')
     "lsp
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'tami5/lspsaga.nvim'
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'neovim/nvim-lspconfig'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
+    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/popup.nvim'
 
     " completition
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -19,9 +19,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'rafamadriz/friendly-snippets'
 
     " visuals
-    Plug 'p00f/nvim-ts-rainbow'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'NTBBloodbath/galaxyline.nvim'
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
@@ -37,14 +35,13 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'windwp/nvim-autopairs'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'tomtom/tcomment_vim'
-    Plug 'jbyuki/venn.nvim'
     Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
 " config, and load theme
 let g:srcery_inverse = 0
-colorscheme srcery
+colorscheme gruvbox-baby
 
 " make background transparent
 hi Normal guibg=NONE ctermbg=NONE
@@ -143,20 +140,20 @@ nnoremap <Leader>s <Esc>:w<cr>
 nnoremap <leader>n <C-^>    
 
 " >> Lsp key bindings
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <Leader>c <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
-xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
-nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
+" nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
+" nnoremap <Leader>c <cmd>lua vim.lsp.buf.formatting()<CR>
+" nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
+" nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
+" xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
+" nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
 lua <<EOF
 require("lsp")
@@ -164,24 +161,4 @@ require("treesitter")
 require("completion")
 require("saga")
 require("statusline")
-
 require('pairs')
-function _G.Toggle_venn()
-    local venn_enabled = vim.inspect(vim.b.venn_enabled)
-    if venn_enabled == "nil" then
-        vim.b.venn_enabled = true
-        vim.cmd[[setlocal ve=all]]
-        -- draw a line on HJKL keystokes
-        vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", {noremap = true})
-        -- draw a box by pressing "f" with visual selection
-        vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", {noremap = true})
-    else
-        vim.cmd[[setlocal ve=]]
-        vim.cmd[[mapclear <buffer>]]
-        vim.b.venn_enabled = nil
-    end
-end
-EOF
