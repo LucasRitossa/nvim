@@ -4,10 +4,10 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'neovim/nvim-lspconfig'
+    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
-    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
 
@@ -145,7 +145,6 @@ nnoremap <leader>n <C-^>
 " nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 " nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 " nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
 " nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
@@ -156,9 +155,9 @@ nnoremap <Leader>c <cmd>lua vim.lsp.buf.format({async = true})<CR>
 " nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
 lua <<EOF
+require("saga")
 require("lsp")
 require("treesitter")
 require("completion")
-require("saga")
 require("statusline")
 require('pairs')
