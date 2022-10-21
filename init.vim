@@ -1,6 +1,7 @@
 " >> load plugins
 call plug#begin(stdpath('data') . 'vimplug')
     "lsp
+    Plug 'nvim-lua/plenary.nvim'
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'neovim/nvim-lspconfig'
@@ -8,19 +9,19 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
-    Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
 
     " completition
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/nvim-cmp'
-    Plug 'L3MON4D3/LuaSnip'
+
+    "snippets 
+    Plug 'L3MON4D3/LuaSnip', {'branch' : 'master'}
     Plug 'rafamadriz/friendly-snippets'
 
     " visuals
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'NTBBloodbath/galaxyline.nvim'
+    Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
     " themes
@@ -33,8 +34,6 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'sindrets/diffview.nvim'
     Plug 'ThePrimeagen/harpoon'
     Plug 'windwp/nvim-autopairs'
-    Plug 'windwp/nvim-ts-autotag'
-    Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-fugitive'
 
 call plug#end()
@@ -50,7 +49,7 @@ hi Normal guibg=NONE ctermbg=NONE
 " gray
 highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
 " blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+highlight! mpItemAbbrMatch guibg=NONE guifg=#569CD6
 highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
 " light blue
 highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
@@ -155,9 +154,9 @@ nnoremap <Leader>c <cmd>lua vim.lsp.buf.format({async = true})<CR>
 " nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
 lua <<EOF
-require("saga")
 require("lsp")
-require("treesitter")
+require("saga")
 require("completion")
 require("statusline")
 require('pairs')
+require("treesitter")

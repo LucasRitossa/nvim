@@ -1,6 +1,6 @@
--- lsp setup
--- Set Default Prefix.
--- Note: You can set a prefix per lsp server in the lv-globals.lua file
+ --lsp setup
+ --Set Default Prefix.
+ --Note: You can set a prefix per lsp server in the lv-globals.lua file
 
 require("project_nvim").setup {}
 require('telescope').load_extension('projects')
@@ -22,3 +22,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
 }
 )
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
