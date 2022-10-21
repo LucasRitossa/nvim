@@ -9,10 +9,9 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
-    Plug 'nvim-lua/popup.nvim'
 
     " completition
-     Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/nvim-cmp'
 
     "snippets 
