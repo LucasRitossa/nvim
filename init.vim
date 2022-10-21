@@ -25,9 +25,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     " themes
     Plug 'srcery-colors/srcery-vim'
-    Plug 'ellisonleao/gruvbox.nvim'
     Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
-    Plug 'sainnhe/gruvbox-material'
 
     "functionality
     Plug 'sindrets/diffview.nvim'
