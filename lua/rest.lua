@@ -36,5 +36,5 @@ require("rest-nvim").setup({
 
 })
  keymap("n", "<leader>rn", "<Plug>RestNvim", { silent = true })
- keymap("n", "<leader>rc", "<Plug>RestNvim", { silent = true })
+ keymap("n", "<leader>rp", "<Plug>RestNvimPreview", { silent = true })
 

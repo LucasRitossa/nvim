@@ -10,9 +10,10 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
     Plug 'nvim-lua/popup.nvim'
+    Plug 'rest-nvim/rest.nvim'
 
     " completition
-     Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/nvim-cmp'
 
     "snippets 
@@ -139,19 +140,16 @@ nnoremap <Leader>s <Esc>:w<cr>
 nnoremap <leader>n <C-^>    
 
 " >> Lsp key bindings
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-" nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
-" nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
+ nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+ nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>c <cmd>lua vim.lsp.buf.format({async = true})<CR>
-" nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
-" nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
-" xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
-" nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
+
+
+" Exec sh, output split right
+command Execsh set splitright | vnew | set filetype=sh | :silent r !sh #
+
+nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
 
 lua <<EOF
 require("lsp")
@@ -160,3 +158,4 @@ require("completion")
 require("statusline")
 require('pairs')
 require("treesitter")
+require("rest")
