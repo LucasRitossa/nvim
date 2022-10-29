@@ -9,7 +9,6 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
-    Plug 'nvim-lua/popup.nvim'
     Plug 'rest-nvim/rest.nvim'
 
     " completition
@@ -27,9 +26,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     " themes
     Plug 'srcery-colors/srcery-vim'
-    Plug 'ellisonleao/gruvbox.nvim'
     Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
-    Plug 'sainnhe/gruvbox-material'
 
     "functionality
     Plug 'sindrets/diffview.nvim'
