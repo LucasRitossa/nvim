@@ -14,6 +14,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     " completition
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'alvan/vim-closetag'
 
     "snippets 
     Plug 'L3MON4D3/LuaSnip', {'branch' : 'master'}
@@ -42,6 +43,7 @@ colorscheme gruvbox-baby
 
 " make background transparent
 hi Normal guibg=NONE ctermbg=NONE
+hi default link SagaBorder NormalFloat
 
 " colors for nvim-cmp
 " gray
@@ -156,3 +158,5 @@ require("statusline")
 require('pairs')
 require("treesitter")
 require("rest")
+require("diffview")
+EOF

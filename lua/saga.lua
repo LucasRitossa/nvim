@@ -13,8 +13,7 @@ require("mason-lspconfig").setup_handlers {
     -- For example, a handler override for the `rust_analyzer`:
 }
 
-local saga = require('lspsaga')
-saga.init_lsp_saga()
+local saga = require('lspsaga').setup({})
 
 -- Lsp finder find the symbol definition implement reference
 -- if there is no implement it will hide
@@ -32,7 +31,7 @@ keymap("n", "gn", "<cmd>Lspsaga rename<CR>", { silent = true })
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
-keymap("n", "pd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 
 -- Show line diagnostics
 keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
