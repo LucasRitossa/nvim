@@ -154,7 +154,6 @@ nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
 
 lua <<EOF
 require("lsp")
-require("mason")
 require("completion")
 require("statusline")
 require('pairs')
