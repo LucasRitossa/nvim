@@ -5,7 +5,6 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
@@ -43,7 +42,6 @@ colorscheme gruvbox-baby
 
 " make background transparent
 hi Normal guibg=NONE ctermbg=NONE
-hi default link SagaBorder NormalFloat
 
 " colors for nvim-cmp
 " gray
@@ -139,11 +137,15 @@ nnoremap <Leader>s <Esc>:w<cr>
 nnoremap <leader>n <C-^>    
 
 " >> Lsp key bindings
- nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
- nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
- nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <Leader>c <cmd>lua vim.lsp.buf.format({async = true})<CR>
-
+                                       nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <Leader>c      <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 
 " Exec sh, output split right
 command Execsh set splitright | vnew | set filetype=sh | :silent r !sh #
@@ -152,7 +154,7 @@ nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
 
 lua <<EOF
 require("lsp")
-require("saga")
+require("mason")
 require("completion")
 require("statusline")
 require('pairs')
