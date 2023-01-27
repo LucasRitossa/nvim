@@ -1,4 +1,3 @@
- -- add proejct-nvim
 require("project_nvim").setup {}
 
 -- add telescope
@@ -32,4 +31,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 }
 )
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- Hover UI
+require("hover").setup{ init = function() require("hover.providers.lsp")
+    require('hover.providers.gh')
+    require('hover.providers.gh_user')
+    require('hover.providers.man')
+    require('hover.providers.dictionary')
+end,
+}
+vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
