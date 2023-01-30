@@ -134,8 +134,16 @@ nnoremap <Leader>CS <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 nnoremap <Leader>pj <cmd>Telescope projects<CR>
 
 " >> Normal Key bindings
-nnoremap <Leader>s <Esc>:w<cr>
+nnoremap <Leader>s <Esc>:w<CR>
 nnoremap <leader>n <C-^>    
+
+command Execsh set splitright | vnew | set filetype=sh | :silent r !sh #
+nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
+
+command MvnCompile silent exec "!mvn compile -o"|redraw!
+nnoremap <silent> <leader>m <Esc>:w<CR><cmd>MvnCompile<CR>
+
+
 
 " >> Lsp key bindings
                                        nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
@@ -144,13 +152,10 @@ nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <Leader>c      <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <Leader>c      <cmd>lua vim.lsp.buf.format()<CR>
 nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 
-" Exec sh, output split right
-command Execsh set splitright | vnew | set filetype=sh | :silent r !sh #
 
-nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
 
 lua <<EOF
 require("lsp")
