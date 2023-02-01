@@ -9,11 +9,16 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
     Plug 'rest-nvim/rest.nvim'
+    Plug 'mfussenegger/nvim-jdtls'
 
     " completition
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'alvan/vim-closetag'
+
+    "Debug
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/cmp-dap'
 
     "snippets 
     Plug 'L3MON4D3/LuaSnip', {'branch' : 'master'}
@@ -124,7 +129,7 @@ nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
 " all files
 nnoremap <Leader>F <cmd>lua require'telescope.builtin'.find_files{}<CR>
 
-" ripgrep like grep through dir
+" ripgrep 
 nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
 
 " pick color scheme
@@ -133,6 +138,12 @@ nnoremap <Leader>CS <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 " telescope projects
 nnoremap <Leader>pj <cmd>Telescope projects<CR>
 
+"java binds
+nnoremap <leader>oi <cmd>lua require'jdtls'.organize_imports()<CR> 
+nnoremap <leader>jc <cmd>lua require'jdtls'.compile("incremental")<CR> 
+command MvnCompile silent exec "!mvn compile -o"|redraw!
+nnoremap <silent> <leader>m <Esc>:w<CR><cmd>MvnCompile<CR>
+
 " >> Normal Key bindings
 nnoremap <Leader>s <Esc>:w<CR>
 nnoremap <leader>n <C-^>    
@@ -140,19 +151,17 @@ nnoremap <leader>n <C-^>
 command Execsh set splitright | vnew | set filetype=sh | :silent r !sh #
 nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
 
-command MvnCompile silent exec "!mvn compile -o"|redraw!
-nnoremap <silent> <leader>m <Esc>:w<CR><cmd>MvnCompile<CR>
 
 
 
 " >> Lsp key bindings
-                                       nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <Leader>c      <cmd>lua vim.lsp.buf.format()<CR>
+nnoremap <silent> <Leader>c      <cmd>lua vim.lsp.buf.format()<CR>
 nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 
 
@@ -165,4 +174,5 @@ require('pairs')
 require("treesitter")
 require("rest")
 require("diffview")
+require("utils")
 EOF

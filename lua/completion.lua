@@ -119,3 +119,9 @@ require("luasnip.loaders.from_vscode").lazy_load({
     include = nil, -- Load all languages
     exclude = {},
 })
+
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = {
+        { name = "dap" }
+    },
+})
