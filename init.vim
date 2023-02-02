@@ -28,7 +28,8 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
-    Plug 'lewis6991/hover.nvim'
+    Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+    " Plug 'lewis6991/hover.nvim'
 
     " themes
     Plug 'srcery-colors/srcery-vim'
@@ -155,8 +156,8 @@ nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
 
 
 " >> Lsp key bindings
+nnoremap <silent> K    <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -175,4 +176,5 @@ require("treesitter")
 require("rest")
 require("diffview")
 require("utils")
+require("term")
 EOF

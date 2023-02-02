@@ -135,14 +135,14 @@ config['init_options'] = {
 
 config['on_attach'] = function(client, bufnr)
     require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-    require "lsp_signature".on_attach({
-        bind = true, -- This is mandatory, otherwise border config won't get registered.
-        floating_window_above_cur_line = false,
-        padding = '',
-        handler_opts = {
-            border = "rounded"
-        }
-    }, bufnr)
+--     require "lsp_signature".on_attach({
+--         bind = true, -- This is mandatory, otherwise border config won't get registered.
+--         floating_window_above_cur_line = false,
+--         padding = '',
+--         handler_opts = {
+--             border = "rounded"
+--         }
+--     }, bufnr)
 end
 
 -- This starts a new client & server,
