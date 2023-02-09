@@ -18,6 +18,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     "Debug
     Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
     Plug 'rcarriga/cmp-dap'
 
     "snippets 
@@ -116,7 +117,7 @@ nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
 nnoremap <Leader>r <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
 
 " find buffer
-nnoremap <Leader>b <cmd>lua require'telescope.builtin'.buffers{}<CR>
+nnoremap <Leader>bb <cmd>lua require'telescope.builtin'.buffers{}<CR>
 
 " find in current buffer
 nnoremap <Leader>/ <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
@@ -151,6 +152,7 @@ nnoremap <leader>n <C-^>
 
 command Execsh set splitright | vnew | set filetype=sh | :silent r !sh #
 nnoremap <silent> <Leader>rs <cmd>Execsh<CR>
+nnoremap <silent> <leader>bd <cmd>bw!<CR>
 
 
 

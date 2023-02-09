@@ -1,3 +1,4 @@
+require("dapui").setup()
 local jdtls_ok, jdtls = pcall(require, "jdtls")
 if not jdtls_ok then
     vim.notify "JDTLS not found, install with `:LspInstall jdtls`"
@@ -135,14 +136,14 @@ config['init_options'] = {
 
 config['on_attach'] = function(client, bufnr)
     require('jdtls').setup_dap({ hotcodereplace = 'auto' })
---     require "lsp_signature".on_attach({
---         bind = true, -- This is mandatory, otherwise border config won't get registered.
---         floating_window_above_cur_line = false,
---         padding = '',
---         handler_opts = {
---             border = "rounded"
---         }
---     }, bufnr)
+    --     require "lsp_signature".on_attach({
+    --         bind = true, -- This is mandatory, otherwise border config won't get registered.
+    --         floating_window_above_cur_line = false,
+    --         padding = '',
+    --         handler_opts = {
+    --             border = "rounded"
+    --         }
+    --     }, bufnr)
 end
 
 -- This starts a new client & server,
@@ -193,3 +194,4 @@ vim.keymap.set('n', '<leader>br', ':lua require"dap".toggle_breakpoint()<CR>')
 vim.keymap.set('n', '<leader>Br', ':lua require"dap".set_breakpoint(vim.fn.input("Condition: "))<CR>')
 vim.keymap.set('n', '<leader>bl', ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log: "))<CR>')
 vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.open()<CR>')
+vim.keymap.set('n', '<leader>dui', ':lua require"dapui".toggle()<CR>')
