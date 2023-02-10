@@ -185,7 +185,7 @@ end
 vim.keymap.set('n', '<leader>dc', ':lua require"dap".continue()<CR>')
 vim.keymap.set('n', '<leader>do', ':lua require"dap".step_over()<CR>')
 vim.keymap.set('n', '<leader>di', ':lua require"dap".step_into()<CR>')
-vim.keymap.set('n', '<S-F8>', ':lua require"dap".step_out()<CR>')
+vim.keymap.set('n', '<leader>dso', ':lua require"dap".step_out()<CR>')
 vim.keymap.set('n', '<leader>da', ':lua attach_to_debug()<CR>')
 vim.keymap.set("n", "<F9>", function() run_spring_boot() end)
 vim.keymap.set("n", "<F10>", function() run_spring_boot(true) end)

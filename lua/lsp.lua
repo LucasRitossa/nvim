@@ -2,12 +2,35 @@ require("project_nvim").setup {}
 
 -- add telescope
 require('telescope').load_extension('projects')
-require('telescope').setup {
+require('telescope').setup({
     defaults = {
+        layout_config = {
+            flex = {
+                flip_columns = 110,
+            },
+            vertical = {
+                height = 0.99,
+                width = 0.99,
+            },
+            horizontal = {
+                height = 0.99,
+                width = 0.99,
+                preview_cutoff = 0,
+                preview_width = 0.5
+            }
+        },
         '--ignore-file',
         '.pnpm'
-    }
-}
+    },
+    pickers = {
+        find_files = {
+            layout_strategy = "flex"
+        },
+        git_files = {
+            layout_strategy = "flex"
+        }
+    },
+})
 -- add nvim-tree support
 require 'nvim-tree'.setup {}
 
