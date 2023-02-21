@@ -31,6 +31,8 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
     Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
     " Plug 'lewis6991/hover.nvim'
+    Plug 'RRethy/vim-illuminate'
+    Plug 'lukas-reineke/indent-blankline.nvim'
 
     " themes
     Plug 'srcery-colors/srcery-vim'
@@ -97,6 +99,10 @@ let g:netrw_banner=0
 
 " set leader key to ,
 let g:mapleader=" "
+
+" >> illuminate binds
+nnoremap <silent><C-n> :lua require('illuminate').goto_next_reference()<CR>
+nnoremap <silent><C-p> :lua require('illuminate').goto_prev_reference()<CR>
 
 " >> Harpoon bindings
 nnoremap <silent><C-h> :lua require("harpoon.ui").nav_file(1)<CR>

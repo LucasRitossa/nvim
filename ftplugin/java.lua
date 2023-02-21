@@ -30,7 +30,7 @@ local config = {
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
-        --'-javaagent:' .. lombok_path,
+        '-javaagent:/Users/Lucas.Ritossa/.local/share/lombok.jar',
         '-Xms3g',
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
@@ -55,7 +55,7 @@ local config = {
                 downloadSources = true,
             },
             configuration = {
-                updateBuildConfiguration = "interactive",
+                updateBuildConfiguration = "automatic",
                 runtimes = {
                     {
                         name = "JavaSE-17",
@@ -69,6 +69,7 @@ local config = {
             },
             maven = {
                 downloadSources = true,
+                updateSnapshots = true,
             },
             implementationsCodeLens = {
                 enabled = true,
@@ -100,6 +101,7 @@ local config = {
                 "org.mockito.Mockito.*",
             },
             importOrder = {
+                "org.springframework",
                 "java",
                 "javax",
                 "com",
@@ -195,3 +197,4 @@ vim.keymap.set('n', '<leader>Br', ':lua require"dap".set_breakpoint(vim.fn.input
 vim.keymap.set('n', '<leader>bl', ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log: "))<CR>')
 vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.open()<CR>')
 vim.keymap.set('n', '<leader>dui', ':lua require"dapui".toggle()<CR>')
+vim.keymap.set('n', '<leader>up', ":lua require('jdtls').update_project_config()<CR>")
