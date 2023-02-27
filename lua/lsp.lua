@@ -34,6 +34,9 @@ require('telescope').setup({
 -- add nvim-tree support
 require 'nvim-tree'.setup {}
 
+-- add comment.nvim support
+require('Comment').setup()
+
 -- add mason support and import all languages
 require("mason").setup()
 require("mason-lspconfig").setup()

@@ -43,6 +43,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'ThePrimeagen/harpoon'
     Plug 'windwp/nvim-autopairs'
     Plug 'tpope/vim-fugitive'
+    Plug 'numToStr/Comment.nvim'
 
 call plug#end()
 

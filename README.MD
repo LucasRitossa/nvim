@@ -11,4 +11,6 @@
 3. open init.vim and run :PlugInstall
 4. Install a [Nerd Font](https://www.nerdfonts.com/)
 5. run :LspInstall on any file to use LSP
-    
+
+
+Java support is included. Replace arguments in ftplugin/java.lua to fit your needs.
