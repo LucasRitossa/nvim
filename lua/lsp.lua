@@ -1,7 +1,6 @@
 require("project_nvim").setup {}
 
 -- add telescope
-require('telescope').load_extension('projects')
 require('telescope').setup({
     defaults = {
         layout_config = {
@@ -31,6 +30,8 @@ require('telescope').setup({
         }
     },
 })
+require('telescope').load_extension('projects')
+
 -- add nvim-tree support
 require 'nvim-tree'.setup {}
 
