@@ -58,10 +58,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 }
 )
 
-require("indent_blankline").setup {
-    show_current_context = true,
-    show_current_context_start = true,
-}
+require("ibl").setup()
 
 -- -- Hover UI
 -- require("hover").setup{ init = function() require("hover.providers.lsp")
