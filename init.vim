@@ -8,8 +8,12 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-telescope/telescope.nvim' 
     Plug 'ahmedkhalf/project.nvim'
-    Plug 'rest-nvim/rest.nvim'
-    Plug 'mfussenegger/nvim-jdtls'
+    Plug 'nvim-java/nvim-java'
+    Plug 'nvim-java/lua-async-await',
+    Plug 'nvim-java/nvim-java-core',
+    Plug 'nvim-java/nvim-java-test',
+    Plug 'nvim-java/nvim-java-dap',
+    Plug 'MunifTanjim/nui.nvim',
 
     " completition
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -32,11 +36,12 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
     " Plug 'lewis6991/hover.nvim'
     Plug 'RRethy/vim-illuminate'
-    Plug 'lukas-reineke/indent-blankline.nvim'
+    "Plug 'lukas-reineke/indent-blankline.nvim'
 
     " themes
     Plug 'srcery-colors/srcery-vim'
     Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+    Plug 'sonph/onehalf', { 'rtp': 'vim'}
 
     "functionality
     Plug 'sindrets/diffview.nvim'
@@ -49,10 +54,10 @@ call plug#end()
 
 " config, and load theme
 let g:srcery_inverse = 0
-colorscheme gruvbox-baby
+colorscheme srcery
 
 " make background transparent
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 
 " colors for nvim-cmp
 " gray
@@ -147,12 +152,6 @@ nnoremap <Leader>CS <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
 " telescope projects
 nnoremap <Leader>pj <cmd>Telescope projects<CR>
 
-"java binds
-nnoremap <leader>oi <cmd>lua require'jdtls'.organize_imports()<CR> 
-nnoremap <leader>jc <cmd>lua require'jdtls'.compile("incremental")<CR> 
-command MvnCompile silent exec "!mvn compile -o"|redraw!
-nnoremap <silent> <leader>m <Esc>:w<CR><cmd>MvnCompile<CR>
-
 " >> Normal Key bindings
 nnoremap <Leader>s <Esc>:w<CR>
 nnoremap <leader>n <C-^>    
@@ -182,7 +181,6 @@ require("completion")
 require("statusline")
 require('pairs')
 require("treesitter")
-require("rest")
 require("diffview")
 require("utils")
 require("term")

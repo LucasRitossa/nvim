@@ -1,5 +1,6 @@
 require("project_nvim").setup {}
 
+
 -- add telescope
 require('telescope').setup({
     defaults = {
@@ -38,6 +39,7 @@ require 'nvim-tree'.setup {}
 -- add comment.nvim support
 require('Comment').setup()
 
+-- require('java').setup()
 -- add mason support and import all languages
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -58,10 +60,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 }
 )
 
-require("indent_blankline").setup {
-    show_current_context = true,
-    show_current_context_start = true,
-}
+--require("ibl").setup();
 
 -- -- Hover UI
 -- require("hover").setup{ init = function() require("hover.providers.lsp")
