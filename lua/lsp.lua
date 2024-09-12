@@ -59,6 +59,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = true,
 }
 )
+  require('lspsaga').setup({})
+
+  vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
+  vim.keymap.set('n', 'gn', '<cmd>Lspsaga rename<CR>')
+  vim.keymap.set('n', 'gca', '<cmd>Lspsaga code_action<CR>')
 
 --require("ibl").setup();
 

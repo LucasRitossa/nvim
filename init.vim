@@ -37,6 +37,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     " Plug 'lewis6991/hover.nvim'
     Plug 'RRethy/vim-illuminate'
     "Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'nvimdev/lspsaga.nvim'
 
     " themes
     Plug 'srcery-colors/srcery-vim'
@@ -54,7 +55,7 @@ call plug#end()
 
 " config, and load theme
 let g:srcery_inverse = 0
-colorscheme srcery
+colorscheme gruvbox-baby
 
 " make background transparent
 "hi Normal guibg=NONE ctermbg=NONE
@@ -164,14 +165,12 @@ nnoremap <silent> <leader>bd <cmd>bw!<CR>
 
 
 " >> Lsp key bindings
-nnoremap <silent> K    <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <Leader>c      <cmd>lua vim.lsp.buf.format()<CR>
-nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 
 
 
