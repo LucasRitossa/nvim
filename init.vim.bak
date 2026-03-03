@@ -58,7 +58,7 @@ let g:srcery_inverse = 0
 colorscheme gruvbox-baby
 
 " make background transparent
-"hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 
 " colors for nvim-cmp
 " gray
