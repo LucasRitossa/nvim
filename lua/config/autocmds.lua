@@ -64,7 +64,16 @@ autocmd("VimResized", {
     end,
 })
 
--- Don't auto-comment new lines
+-- Indent: filetype indentexpr (e.g. lua) conflicts with smartindent and can
+-- delete multiple characters per backspace press.
+local indent = augroup("Indent", { clear = true })
+autocmd("FileType", {
+    group = indent,
+    callback = function()
+        vim.bo.smartindent = false
+    end,
+})
+
 autocmd("BufEnter", {
     group = general,
     callback = function()

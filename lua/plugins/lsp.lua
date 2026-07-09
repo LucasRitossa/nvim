@@ -7,23 +7,11 @@ return {
         opts = {},
     },
 
-    -- Mason-lspconfig bridge
-    {
-        "williamboman/mason-lspconfig.nvim",
-        version = "1.*", -- Pin to v1.x until v2.x API stabilizes
-        dependencies = { "williamboman/mason.nvim" },
-        opts = {
-            automatic_installation = true,
-        },
-    },
-
-    -- LSP Configuration
+    -- LSP Configuration (load before mason-lspconfig so vim.lsp.config is set first)
     {
         "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
@@ -57,7 +45,7 @@ return {
             })
 
             -- LSP keymaps (set when LSP attaches)
-            local on_attach = function(client, bufnr)
+            local on_attach = function(_, bufnr)
                 local opts = { buffer = bufnr, silent = true }
 
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -68,41 +56,44 @@ return {
                 vim.keymap.set("n", "<leader>c", vim.lsp.buf.format, opts)
             end
 
-            -- Use Neovim 0.11 vim.lsp.config / vim.lsp.enable (no deprecated lspconfig[] API)
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    vim.lsp.config(server_name, {
-                        capabilities = capabilities,
-                        on_attach = on_attach,
-                    })
-                    vim.lsp.enable(server_name)
-                end,
+            -- Neovim 0.11+ native LSP config (replaces require("lspconfig")[...].setup)
+            vim.lsp.config("*", {
+                capabilities = capabilities,
+                on_attach = on_attach,
+            })
 
-                ["lua_ls"] = function()
-                    vim.lsp.config("lua_ls", {
-                        capabilities = capabilities,
-                        on_attach = on_attach,
-                        settings = {
-                            Lua = {
-                                diagnostics = {
-                                    globals = { "vim" },
-                                },
-                                workspace = {
-                                    library = {
-                                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                        [vim.fn.stdpath("config") .. "/lua"] = true,
-                                    },
-                                },
-                                telemetry = {
-                                    enable = false,
-                                },
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
+                        workspace = {
+                            library = {
+                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                [vim.fn.stdpath("config") .. "/lua"] = true,
                             },
                         },
-                    })
-                    vim.lsp.enable("lua_ls")
-                end,
+                        telemetry = {
+                            enable = false,
+                        },
+                    },
+                },
             })
         end,
+    },
+
+    -- Mason-lspconfig bridge (v2: auto-enables installed servers via vim.lsp.enable)
+    {
+        "williamboman/mason-lspconfig.nvim",
+        version = "^2.0.0",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        opts = {
+            automatic_enable = true,
+        },
     },
 
     -- LSP Saga for enhanced UI

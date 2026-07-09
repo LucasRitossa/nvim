@@ -146,7 +146,8 @@ return {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         opts = {
-            check_ts = true,
+            check_ts = false,
+            map_bs = false,
         },
         config = function(_, opts)
             local npairs = require("nvim-autopairs")

@@ -8,9 +8,9 @@ opt.relativenumber = true
 -- Tabs & indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
+opt.softtabstop = 4
 opt.expandtab = true
 opt.autoindent = true
-opt.smartindent = true
 
 -- Line wrapping
 opt.wrap = false
@@ -53,8 +53,8 @@ opt.undofile = true
 -- Mouse support
 opt.mouse = "a"
 
--- Virtual edit
-opt.virtualedit = "all"
+-- Virtual edit (avoid "all" — it breaks insert-mode backspace in virtual space)
+opt.virtualedit = ""
 
 -- Disable netrw banner
 vim.g.netrw_banner = 0
